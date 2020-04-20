@@ -15,7 +15,14 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+var MONGODB_URI = "mongodb://bebo92:Brb1992!!@ds125623.mlab.com:25623/heroku_xrqh2gt5" || "mongodb://localhost/budget";
+const options = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  family: 4 // Use IPv4, skip trying IPv6
+};
+mongoose.connect(MONGODB_URI,options)
 
 
 app.get("/exercise", (req, res) => {
